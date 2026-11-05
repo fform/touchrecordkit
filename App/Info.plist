@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key><string>TouchRecordKit</string>
+    <key>CFBundleDisplayName</key><string>TouchRecordKit</string>
+    <key>CFBundleIdentifier</key><string>com.fform.touchrecordkit</string>
+    <key>CFBundleExecutable</key><string>TouchRecordKit</string>
+    <key>CFBundlePackageType</key><string>APPL</string>
+    <key>CFBundleShortVersionString</key><string>__VERSION__</string>
+    <key>CFBundleVersion</key><string>__BUILD__</string>
+    <key>LSMinimumSystemVersion</key><string>14.0</string>
+    <key>NSHighResolutionCapable</key><true/>
+    <key>CFBundleIconName</key><string>AppIcon</string>
+    <key>CFBundleIconFile</key><string>AppIcon</string>
+    <key>NSLocalNetworkUsageDescription</key><string>TouchRecordKit receives touch, Apple Pencil and keyboard data from apps that include the TouchRecordKit package.</string>
+    <key>NSBonjourServices</key><array><string>_touchrecordkit._tcp</string></array>
+    <key>LSApplicationCategoryType</key><string>public.app-category.video</string>
+    <key>NSCameraUsageDescription</key><string>TouchRecordKit captures your connected iPad's screen.</string>
+    <key>NSMicrophoneUsageDescription</key><string>TouchRecordKit records your audio interface inputs.</string>
+</dict>
+</plist>

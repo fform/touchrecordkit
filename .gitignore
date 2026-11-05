@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Build output
+build/
+dist/
+*.ofx.bundle
+
+# Swift Package Manager / Xcode
+.build/
+.swiftpm/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+Package.resolved
+
+# Local test media
+*.mp4
+*.mov
+*.touches.json
