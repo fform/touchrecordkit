@@ -7,7 +7,8 @@
 # One-time setup:
 #   1. Install a "Developer ID Application" certificate (Xcode ▸ Settings ▸ Accounts ▸ Manage Certificates ▸ +).
 #      Optional: a "Developer ID Installer" certificate, to ship the Resolve plugin as a .pkg installer.
-#   2. Store notarization credentials in the keychain (app-specific password from account.apple.com):
+#   2. Notarization uses the App Store Connect API through `asc` (brew install asc; asc auth login …).
+#      Without asc it falls back to notarytool with the keychain profile in NOTARY_PROFILE:
 #        xcrun notarytool store-credentials touchrecordkit --apple-id you@example.com --team-id Q8H5WZAY8E
 #   3. brew install gh && gh auth login     (only for `publish`)
 #
@@ -24,7 +25,15 @@ INSTALLER_ID=${INSTALLER_ID:-$(pick_identity basic "Developer ID Installer")}
 echo "Signing as: $SIGN_ID"
 export SIGN_ID
 
-notarize() { xcrun notarytool submit "$1" --keychain-profile "$NOTARY_PROFILE" --wait; }
+notarize() {
+  echo "Notarizing $1 …"
+  if command -v asc >/dev/null; then
+    local out; out=$(asc notarization submit --file "$1" --wait --output json)
+    echo "$out" | grep -q '"Accepted"' || { echo "$out"; echo "Notarization failed (asc notarization log --id …)"; exit 1; }
+  else
+    xcrun notarytool submit "$1" --keychain-profile "$NOTARY_PROFILE" --wait
+  fi
+}
 
 rm -rf dist && mkdir -p dist
 
